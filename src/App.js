@@ -7,19 +7,22 @@ import {ChakraProvider} from '@chakra-ui/react';
 import {diagnosisList, patientList} from './components/Data';
 
 function App() {
-  const [patientStatus, setPatientStatus] = react.useState([...patientList]);
-    const handleAddDiagnosis = (patientId, diagnosisIndex) => {
+    const [patientStatus, setPatientStatus] = react.useState(patientList);
+
+    const updatePatientDiagnosis = (patientId, newDiagnosis) => {
         const updatedPatient = patientList.map((patient) => {
             if (patient.id === patientId) {
                 return {
                     ...patient,
-                    diagnoses: [...patient.diagnoses, diagnosisList[diagnosisIndex]]
+                    diagnoses: [...patient.diagnoses, newDiagnosis]
                 }
             }
             return patient;
         })
         setPatientStatus(updatedPatient);
+        console.log({patientStatus})
     }
+
     return (
       <ChakraProvider>
         <Header />
@@ -29,9 +32,9 @@ function App() {
             </CardHeader>
             <CardBody>
             <Stack divider={<StackDivider borderColor="black"/>} spacing="4">
-            {patientList.map((patient) => (
+            {patientStatus.map((patient) => (
                 <HStack>
-                  <PatientSection patient={patient} onAddDiagnosis={handleAddDiagnosis}/>
+                  <PatientSection patient={patient} updatePatientDiagnosis={updatePatientDiagnosis}/>
                 </HStack>
             ))}
             </Stack>

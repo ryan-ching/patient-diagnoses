@@ -26,6 +26,15 @@ export const patientList = [
         symptoms: ["Sore throat"],
         diagnoses: []
     },
+    {
+        id: 3,
+        name: "Jill Doe",
+        age: 50,
+        address: "9876 East St.",
+        gender: "F",
+        symptoms: ["Loss of taste" , "Loss of smell"],
+        diagnoses: []
+    }
 ]
 
 
@@ -43,5 +52,17 @@ export const diagnosisList = [
     {
         name: "Cold",
         symptoms: ["Cough", "Sore throat"]
+    },
+    {
+        name: "Strep Throat",
+        symptoms: ["Sore throat"]
+    },
+    {
+        name: "Pneumonia",
+        symptoms: ["Cough", "Fever", "Shortness of breath"]
+    },
+    {
+        name: "Bronchitis",
+        symptoms: ["Cough", "Fever", "Shortness of breath"]
     }
 ]

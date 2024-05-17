@@ -2,7 +2,8 @@ import React from "react";
 import { diagnosisList } from "./Data";
 import {Select, Box, Text, Button, HStack} from '@chakra-ui/react'
 import {AddIcon} from '@chakra-ui/icons'
-const PatientSection = ({patient}) => {
+
+const PatientSection = ({patient, updatePatientDiagnosis}) => {
     const [selectDiagnosis, setSelectDiagnosis] = React.useState('');
 
     const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
@@ -18,16 +19,15 @@ const PatientSection = ({patient}) => {
         console.log("clicked change")
         e.preventDefault();
         setSelectDiagnosis(e.target.value);
-        console.log({selectDiagnosis})
-    }
+    };
 
     const handleAddDiagnosis = () => {
         console.log("clicked add")
         if (selectDiagnosis !== '') {
-            setSelectDiagnosis([...patient.diagnoses, selectDiagnosis]);
+            updatePatientDiagnosis(patient.id, selectDiagnosis);
         }
         console.log({selectDiagnosis})
-    }
+    };
     return (
         <Box>
             <HStack>
