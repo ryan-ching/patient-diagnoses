@@ -7,7 +7,9 @@ import {Select, Box, Card, CardHeader, CardBody, Stack, Text, StackDivider, Butt
 const PatientSection = () => {
     return (
         <Card>
-            <CardHeader>PATIENTS</CardHeader>
+            <CardHeader>
+                <Text fontSize="3xl" display="flex" justifyContent="center">Patient Information</Text>
+            </CardHeader>
             <CardBody>
             <Stack divider={<StackDivider borderColor="black"/>} spacing="4">
             {patientList.map((patient) => (

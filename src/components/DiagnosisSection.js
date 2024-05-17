@@ -1,15 +1,30 @@
 import React from "react";
-import { diagnosisList, symptomsList } from "./Data";
+import { diagnosisList } from "./Data";
 import {Select, Box, Text, Button, HStack} from '@chakra-ui/react'
-import {AddIcon, addIcon} from '@chakra-ui/icons'
+import {AddIcon} from '@chakra-ui/icons'
 const DiagnosisSection = ({patient}) => {
-    const [diagnosis, setDiagnosis] = React.useState([]);
+    const [selectDiagnosis, setSelectDiagnosis] = React.useState('');
 
     const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
         return diagnosisList.filter((diagnosis) => {
             (diagnosis.symptoms.includes(patient.symptoms))
         })
     });
+
+    const handleChange = (e) => {
+        console.log("clicked change")
+        e.preventDefault();
+        setSelectDiagnosis(e.target.value);
+        console.log({selectDiagnosis})
+    }
+
+    const handleAddDiagnosis = () => {
+        console.log("clicked add")
+        if (selectDiagnosis !== '') {
+            setSelectDiagnosis([...patient.diagnoses, selectDiagnosis]);
+        }
+        console.log({selectDiagnosis})
+    }
     return (
         <Box>
             <HStack>
@@ -26,12 +41,12 @@ const DiagnosisSection = ({patient}) => {
                     ))}
                 </Box>
                 <HStack>
-                    <Select placeHolder="Select Diagnosis">
+                    <Select value={selectDiagnosis} onChange={handleChange} placeHolder="Select Diagnosis">
                         {diagnosisList.map((diagnosis, index) => (
-                            <option value={index}>{diagnosis.name}</option>
+                            <option value={diagnosis.name}>{diagnosis.name}</option>
                         ))}
                     </Select>
-                    <Button colorScheme="teal" variant="solid">
+                    <Button colorScheme="teal" variant="solid" onClick={handleAddDiagnosis}>
                         <AddIcon />
                     </Button>
                 </HStack>
