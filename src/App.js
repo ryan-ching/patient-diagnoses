@@ -1,12 +1,15 @@
+import React from 'react';
+import PatientSection from './components/PatientSection';
+import { ChakraProvider } from '@chakra-ui/react';
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        test
-      </header>
-    </div>
+    <ChakraProvider>
+      <div>
+        <PatientSection />
+      </div>
+    </ChakraProvider>
   );
 }
 
