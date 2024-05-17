@@ -1,10 +1,11 @@
 import React from "react";
 import { diagnosisList } from "./Data";
 import {Select, Box, Text, Button, HStack} from '@chakra-ui/react'
-import {AddIcon} from '@chakra-ui/icons'
+import {AddIcon, CloseIcon} from '@chakra-ui/icons'
 
-const PatientSection = ({patient, updatePatientDiagnosis}) => {
+const PatientSection = ({patient, updatePatientDiagnosis, deletePatientDiagnosis}) => {
     const [selectDiagnosis, setSelectDiagnosis] = React.useState('');
+    const [deleteDiagnosis, setDeleteDiagnosis] = React.useState('');
 
     const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
         return diagnosis.symptoms.some(symptom => patient.symptoms.includes(symptom));
@@ -28,9 +29,18 @@ const PatientSection = ({patient, updatePatientDiagnosis}) => {
         }
         console.log({selectDiagnosis})
     };
+    const handleDelete = (e) => {
+        e.preventDefault();
+        setDeleteDiagnosis(e.target.value);
+    }
+    const handleDeleteDiagnosis = (e) => {
+        e.preventDefault();
+        setDeleteDiagnosis(e.target.value);
+        deletePatientDiagnosis(patient.id, deleteDiagnosis);
+    }
     return (
-        <Box>
-            <HStack>
+        <Box >
+            <HStack spacing={300} justify="center" align="center" width="100%">
                 <Box>
                     <Text>Patient ID: {patient.id}</Text>
                     <Text>Name: {patient.name}</Text>
@@ -44,12 +54,6 @@ const PatientSection = ({patient, updatePatientDiagnosis}) => {
                         <Text>{symptom}</Text>
                     ))}
                 </Box>
-                <Box>
-                    <Text>CURRENT DIAGNOSIS:</Text>
-                    {patient.diagnoses.map((diagnosis) => (
-                        <Text>{diagnosis}</Text>
-                    ))}
-                </Box>
                 <HStack>
                     <Select value={selectDiagnosis} onChange={handleChange}>
                         <option value="" disabled selected hidden>Select Diagnosis </option>
@@ -61,6 +65,15 @@ const PatientSection = ({patient, updatePatientDiagnosis}) => {
                         <AddIcon />
                     </Button>
                 </HStack>
+                <Box>
+                    <Text>CURRENT DIAGNOSIS:</Text>
+                    {patient.diagnoses.map((diagnosis) => (
+                        <HStack>
+                            <Text>{diagnosis}</Text>
+                            <Button value={diagnosis} onClick={handleDeleteDiagnosis}><CloseIcon /></Button>
+                        </HStack>
+                    ))}
+                </Box>
             </HStack>
         </Box>
     );
