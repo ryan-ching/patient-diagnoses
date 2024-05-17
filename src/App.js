@@ -8,7 +8,6 @@ function App() {
   return (
     <ChakraProvider>
         <PatientSection />
-        <DiagnosisSection />
     </ChakraProvider>
   );
 }

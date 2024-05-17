@@ -1,6 +1,8 @@
 import React from "react";
-import { patientList } from "./Data";
-import {Box, Card, CardHeader, CardBody, CardFooter, Stack, Text, StackDivider, Heading} from '@chakra-ui/react'
+import { patientList, diagnosisList, symptomsList} from "./Data";
+import DiagnosisSection from "./DiagnosisSection";
+import SubmitSection from "./SubmitSection";
+import {Select, Box, Card, CardHeader, CardBody, Stack, Text, StackDivider, Button} from '@chakra-ui/react'
 
 const PatientSection = () => {
     return (
@@ -8,17 +10,20 @@ const PatientSection = () => {
             <CardHeader>PATIENTS</CardHeader>
             <CardBody>
             <Stack divider={<StackDivider borderColor="black"/>} spacing="4">
-            {patientList.map((patient, index) => (
+            {patientList.map((patient) => (
                     <Box>
-                        <Text textTransform={"uppercase"}>Name: {patient.name}</Text>
-                        <Text textTransform={"uppercase"}>Age: {patient.age}</Text>
-                        <Text textTransform={"uppercase"}>Address: {patient.address}</Text>
-                        <Text textTransform={"uppercase"}>Gender/Sex: {patient.gender}</Text>
-                        <Text textTransform={"uppercase"}>Symptoms: {patient.symptoms.join(", ")}</Text>
+                        <Text>Patient ID: {patient.id}</Text>
+                        <Text>Name: {patient.name}</Text>
+                        <Text>Age: {patient.age}</Text>
+                        <Text>Address: {patient.address}</Text>
+                        <Text>Gender/Sex: {patient.gender}</Text>
+                        <Text>Symptoms: {patient.symptoms.join(", ")}</Text>
+                        <DiagnosisSection patientSymptoms={patient.symptoms}/>
                     </Box>
             ))}
             </Stack>
             </CardBody>
+            <SubmitSection />
         </Card>
     );
 };

@@ -1,14 +1,15 @@
 import React from "react";
 import { diagnosisList, symptomsList } from "./Data";
-import {Select, Box, Text} from '@chakra-ui/react'
-const DiagnosisSection = () => {
-    const [selectSymptoms, setSelectSymptoms] = React.useState([]);
+import {Select, Box, Text, Button} from '@chakra-ui/react'
+import {AddIcon, addIcon} from '@chakra-ui/icons'
+const DiagnosisSection = (patientSymptoms) => {
+    const [diagnosis, setDiagnosis] = React.useState([]);
 
-    // const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
-    //     return diagnosisList.filter((diagnosis) => {
-    //         (diagnosis.symptoms.includes(selectSymptoms))
-    //     })
-    // });
+    const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
+        return diagnosisList.filter((diagnosis) => {
+            (diagnosis.symptoms.includes(patientSymptoms))
+        })
+    });
     return (
         <Box>
             <Text>Select Diagnosis</Text>
@@ -17,8 +18,10 @@ const DiagnosisSection = () => {
                     <option value={index}>{diagnosis.name}</option>
                 ))}
             </Select>
+            <Button colorScheme="teal" variant="solid">
+                <AddIcon />
+            </Button>
         </Box>
-        
     );
 }
 

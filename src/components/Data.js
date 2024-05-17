@@ -1,5 +1,6 @@
 export const patientList = [
     {
+        id: 1,
         name: "John Doe",
         age: 20,
         address: "1234 West St.",
@@ -7,6 +8,7 @@ export const patientList = [
         symptoms: ["Cough", "Fever", "Shortness of breath"]
     },
     {
+        id: 2,
         name: "Jane Doe",
         age: 40,
         address: "3456 North St.",
@@ -14,6 +16,7 @@ export const patientList = [
         symptoms: ["Cough", "Fever"]
     },
     {
+        id: 3,
         name: "Jim Doe",
         age: 70,
         address: "7890 South St.",
