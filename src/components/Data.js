@@ -5,7 +5,8 @@ export const patientList = [
         age: 20,
         address: "1234 West St.",
         gender: "M",
-        symptoms: ["Cough", "Fever", "Shortness of breath"]
+        symptoms: ["Cough", "Fever", "Shortness of breath"],
+        diagnoses: []
     },
     {
         id: 2,
@@ -13,7 +14,8 @@ export const patientList = [
         age: 40,
         address: "3456 North St.",
         gender: "F",
-        symptoms: ["Cough", "Fever"]
+        symptoms: ["Cough", "Fever"],
+        diagnoses: []
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ export const patientList = [
         age: 70,
         address: "7890 South St.",
         gender: "M",
-        symptoms: ["Sore Throat"]
+        symptoms: ["Sore Throat"],
+        diagnoses: []
     },
 ]
 
