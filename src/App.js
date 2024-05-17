@@ -7,14 +7,17 @@ import {ChakraProvider} from '@chakra-ui/react';
 import {patientList} from './components/Data';
 
 function App() {
+    // If data stored locally, inital state is set to that data, otherwise set to patientList (empty diagnoses)
     const [patientStatus, setPatientStatus] = react.useState(() => {
       const savedData = localStorage.getItem('patientStatus');
       return savedData ? JSON.parse(savedData) : patientList;
     });
+    // Update local storage whenever patientStatus changes
     useEffect(() => {
         localStorage.setItem('patientStatus', JSON.stringify(patientStatus));
     }, [patientStatus]);
-
+    // Passed into PatientSection.js, called when + button clicked, 
+    // only adds diagnosis if not already in patient.diagnoses
     const updatePatientDiagnosis = (patientId, newDiagnosis) => {
         setPatientStatus((prevPatientStatus) => {
             return prevPatientStatus.map((patient) => {
@@ -28,7 +31,8 @@ function App() {
             })
         })
     }
-
+    // Passed into PatientSection.js, called when - button clicked, diagnosis guaranteed to be in patient.diagnoses 
+    // since its only displays current diagnoses
     const deletePatientDiagnosis = (patientId, diagnosis) => {
         setPatientStatus((prevPatientStatus) => {
             return prevPatientStatus.map((patient) => {

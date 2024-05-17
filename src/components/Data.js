@@ -37,9 +37,6 @@ export const patientList = [
     }
 ]
 
-
-export const symptomsList = ["Cough", "Fever", "Shortness of breath", "Sore throat", "Loss of taste" , "Loss of smell"]
-
 export const diagnosisList = [
     {
         name: "COVID-19",

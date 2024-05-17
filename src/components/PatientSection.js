@@ -4,32 +4,36 @@ import {Select, Box, Text, Button, HStack} from '@chakra-ui/react'
 import {AddIcon, CloseIcon} from '@chakra-ui/icons'
 
 const PatientSection = ({patient, updatePatientDiagnosis, deletePatientDiagnosis}) => {
+    // State for diagnosis selected in scroll menu (to be added)
     const [selectDiagnosis, setSelectDiagnosis] = React.useState('');
+    // State for diagnosis selected to be deleted
     const [deleteDiagnosis, setDeleteDiagnosis] = React.useState('');
 
+    // Only include diagnoses that have one common symptom with current patient
     const filteredDiagnosis = diagnosisList.filter((diagnosis) => {
         return diagnosis.symptoms.some(symptom => patient.symptoms.includes(symptom));
     })
+    // Sort by length of common symptoms
     .sort((a, b) => {
         const aSymptoms = a.symptoms.filter(symptom => patient.symptoms.includes(symptom)).length;
         const bSymptoms = b.symptoms.filter(symptom => patient.symptoms.includes(symptom)).length;
         return bSymptoms - aSymptoms;
     });
-
+    // Whenever diagnosis selected from dropdown, update selectDiagnosis
     const handleChange = (e) => {
-        console.log("clicked change")
+        // console.log("clicked change")
         e.preventDefault();
         setSelectDiagnosis(e.target.value);
     };
-
+    // When + button clicked, add diagnosis to currentpatient in patientStatus
     const handleAddDiagnosis = () => {
-        console.log("clicked add")
+        // console.log("clicked add")
         if (selectDiagnosis !== '') {
             updatePatientDiagnosis(patient.id, selectDiagnosis);
         }
         console.log({selectDiagnosis})
     };
-
+    // When X button clicked, delete associated diagnosis from current patient in patientStatus
     const handleDeleteDiagnosis = (e) => {
         e.preventDefault();
         setDeleteDiagnosis(e.target.value);
@@ -55,7 +59,7 @@ const PatientSection = ({patient, updatePatientDiagnosis, deletePatientDiagnosis
                     <Text color="white" paddingBottom={10}> ADD DIAGNOSIS</Text>
                     <HStack>
                         <Select value={selectDiagnosis} onChange={handleChange}>
-                            <option css={{color:"white"}} value="" disabled selected hidden>Select Diagnosis </option>
+                            <option value="" disabled selected hidden>Select Diagnosis </option>
                             {filteredDiagnosis.map((diagnosis) => (
                                 <option color="white" value={diagnosis.name}>{diagnosis.name}</option>
                             ))}
