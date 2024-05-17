@@ -10,17 +10,17 @@ function App() {
     const [patientStatus, setPatientStatus] = react.useState(patientList);
 
     const updatePatientDiagnosis = (patientId, newDiagnosis) => {
-        const updatedPatient = patientList.map((patient) => {
-            if (patient.id === patientId) {
-                return {
-                    ...patient,
-                    diagnoses: [...patient.diagnoses, newDiagnosis]
+        setPatientStatus((prevPatientStatus) => {
+            return prevPatientStatus.map((patient) => {
+                if (patient.id === patientId) {
+                    return {
+                        ...patient,
+                        diagnoses: [...patient.diagnoses, newDiagnosis]
+                    }
                 }
-            }
-            return patient;
+                return patient;
+            })
         })
-        setPatientStatus(updatedPatient);
-        console.log({patientStatus})
     }
 
     return (

@@ -11,7 +11,7 @@ List of recommended diagnosis to choose from
 User interaction to add diagnosis to patient
     - save to a file, database, or in-memory so that a page refresh keeps the state of that change
  If you can put yourself in the shoes of a doctor treating a patient what additional feature might be useful and how would you go about extending the application to support those.
- 
+
 ## Features
 
 
@@ -19,3 +19,8 @@ User interaction to add diagnosis to patient
  A submit button to add the diagnosis
  Section for viewing diagnosis
  Save button to export the diagnosis to file
+
+## Ideas
+
+Extending to recommended medication
+Better sorting algorithm (maybe rank the symptoms of how likely they predict a diagnosis)
