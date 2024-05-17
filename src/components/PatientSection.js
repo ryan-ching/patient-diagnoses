@@ -29,10 +29,7 @@ const PatientSection = ({patient, updatePatientDiagnosis, deletePatientDiagnosis
         }
         console.log({selectDiagnosis})
     };
-    const handleDelete = (e) => {
-        e.preventDefault();
-        setDeleteDiagnosis(e.target.value);
-    }
+
     const handleDeleteDiagnosis = (e) => {
         e.preventDefault();
         setDeleteDiagnosis(e.target.value);
@@ -40,37 +37,44 @@ const PatientSection = ({patient, updatePatientDiagnosis, deletePatientDiagnosis
     }
     return (
         <Box >
-            <HStack spacing={300} justify="center" align="center" width="100%">
-                <Box>
-                    <Text>Patient ID: {patient.id}</Text>
-                    <Text>Name: {patient.name}</Text>
-                    <Text>Age: {patient.age}</Text>
-                    <Text>Address: {patient.address}</Text>
-                    <Text>Gender/Sex: {patient.gender}</Text>
+            <HStack spacing={100} justify="center" align="center" width="100%">
+                <Box bg="teal.500" p={5} w={400} h={150} borderRadius={10}>
+                    <Text color="white">Patient ID: {patient.id}</Text>
+                    <Text color="white">Name: {patient.name}</Text>
+                    <Text color="white">Age: {patient.age}</Text>
+                    <Text color="white">Address: {patient.address}</Text>
+                    <Text color="white">Gender/Sex: {patient.gender}</Text>
                 </Box>
-                <Box>
-                    <Text>CURRENT SYMPTOMS:</Text>
+                <Box bg="teal.500" p={5} w={400} h={150} borderRadius={10}>
+                    <Text color="white">CURRENT SYMPTOMS:</Text>
                     {patient.symptoms.map((symptom) => (
-                        <Text>{symptom}</Text>
+                        <Text color="white">{symptom}</Text>
                     ))}
                 </Box>
-                <HStack>
-                    <Select value={selectDiagnosis} onChange={handleChange}>
-                        <option value="" disabled selected hidden>Select Diagnosis </option>
-                        {filteredDiagnosis.map((diagnosis, index) => (
-                            <option value={diagnosis.name}>{diagnosis.name}</option>
-                        ))}
-                    </Select>
-                    <Button colorScheme="teal" variant="solid" onClick={handleAddDiagnosis}>
-                        <AddIcon />
-                    </Button>
-                </HStack>
-                <Box>
-                    <Text>CURRENT DIAGNOSIS:</Text>
+                <Box bg="teal.500" p={5} w={400} h={150} borderRadius={10}>
+                    <Text color="white" paddingBottom={10}> ADD DIAGNOSIS</Text>
+                    <HStack>
+                        <Select value={selectDiagnosis} onChange={handleChange}>
+                            <option css={{color:"white"}} value="" disabled selected hidden>Select Diagnosis </option>
+                            {filteredDiagnosis.map((diagnosis) => (
+                                <option color="white" value={diagnosis.name}>{diagnosis.name}</option>
+                            ))}
+                        </Select>
+                        <Button colorScheme="teal" variant="solid" onClick={handleAddDiagnosis}>
+                            <AddIcon />
+                        </Button>
+                    </HStack>
+                </Box>
+                <Box bg="teal.500" p={5} w={400} h={150} borderRadius={10}>
+                    <Text color="white">CURRENT DIAGNOSIS:</Text>
                     {patient.diagnoses.map((diagnosis) => (
-                        <HStack>
-                            <Text>{diagnosis}</Text>
-                            <Button value={diagnosis} onClick={handleDeleteDiagnosis}><CloseIcon /></Button>
+                        <HStack 
+                            justify="space-between"
+                            borderRadius={5}
+                            borderWidth="2px" 
+                            borderColor="teal.500">
+                            <Text color="white" textSize={10} paddingLeft={4}>{diagnosis}</Text>
+                            <Button value={diagnosis} onClick={handleDeleteDiagnosis}><CloseIcon color="teal.500"/></Button>
                         </HStack>
                     ))}
                 </Box>

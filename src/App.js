@@ -1,10 +1,10 @@
 import react, { useEffect } from 'react';
-import {Box, Text, HStack, Stack, Card, CardHeader, CardBody, StackDivider} from '@chakra-ui/react';
+import {Text, HStack, Stack, Card, CardHeader, CardBody, StackDivider} from '@chakra-ui/react';
 import Header from './components/Header';
 import PatientSection from './components/PatientSection';
 import SubmitSection from './components/SubmitSection';
 import {ChakraProvider} from '@chakra-ui/react';
-import {diagnosisList, patientList} from './components/Data';
+import {patientList} from './components/Data';
 
 function App() {
     const [patientStatus, setPatientStatus] = react.useState(() => {
